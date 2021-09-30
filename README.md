@@ -40,11 +40,6 @@ First initialise Bespot SDK with the provided **App Id** and **App Secret**
 ```kotlin
 Bespot.init(this, "your_app_id", "your_secret", null)
 ```
-or via sample project's `build.gradle` file
-```kotlin
-buildConfigField("String", "BESPOT_APP_ID", "\"$BESPOT_APP_ID\"")
-buildConfigField("String", "BESPOT_APP_SECRET", "\"$BESPOT_APP_SECRET\"")
-```
 
 The Bespot SDK requires three permissions. It needs permission for [Fine Location](https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION), for [Bluetooth](https://developer.android.com/reference/android/Manifest.permission#BLUETOOTH) and for [Bluetooth Admin](https://developer.android.com/reference/android/Manifest.permission#BLUETOOTH_ADMIN).
 
@@ -73,63 +68,6 @@ For the unsubscribe procedure use the `Bespot.unsubscribe`
     }
 ```
 
-#### Request for last status
-
-When the last status of the device is needed, you can retrieve it by calling the `Bespot.lastStatus`. This will return a `StatusResult` object.
-
-```kotlin
-Bespot.lastStatus(object: StatusObserver {
-                override fun onStatusUpdate(status: StatusResult) {
-                    // Handle status
-                }
-
-                override fun onError(error: Failure) {
-                   // Handle error
-                }
-
-            })
-```
-
-#### Request for stores
-
-To receive the available stores, call the `Bespot.getStores`.
-
-```kotlin
-Bespot.getStores(object: StoresCallback {
-                override fun onStoreReceived(stores: List<Store>) {
-                     // Handle available stores
-                }
-
-                override fun onError(error: Failure) {
-                    // Handle error
-                }
-            })
-```
-
-#### Request for store information
-
-You can request for information about a store by using the `Bespot.getStore` method and passing the `store_id`.
-
-```kotlin
-Bespot.getStore("store_id", object: StoreCallback {
-                override fun onStoreReceived(store: Store) {
-                     // Handle store details
-                }
-
-                override fun onError(error: Failure) {
-                    // Handle error
-                }
-            })
-```
-
-#### Add User Identifier
-
-You can add a user unique Identifier to keep track the user's session.
-
-```kotlin
-Bespot.setUserID("user_id")
-```
-
 ####  Failures
 
 Every `Observer` or `Callback` class has an `onError(error: Failure)` callback method that retrieves an `Failure` object.
@@ -145,10 +83,6 @@ when (error) {
         else -> // Unhandleable error
     }
 ```
-
-## Support
-
-If you find a bug please fill out an [issue report](https://gitlab.com/bespot/bespot-sdk-android-release/-/issues) or contact us at [dev@bespot.me](dev@bespot.me)
 
 ## License
 
